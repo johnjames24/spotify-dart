@@ -83,6 +83,10 @@ abstract class SpotifyApiBase {
     return _getImpl('${_baseUrl}/$path', const {});
   }
 
+  Future<String> _getAlien(String path) {
+    return _getImpl(path, const {});
+  }
+
   Future<String> _post(String path, [String body = '']) {
     return _postImpl('${_baseUrl}/$path', const {}, body);
   }

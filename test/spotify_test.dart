@@ -77,13 +77,13 @@ Future main() async {
 
   group('User', () {
     test('currentlyPlaying', () async {
-      var result = await spotify.users.currentlyPlaying();
+      var result = await spotify.me.currentlyPlaying();
 
       expect(result.item.name, 'So Voce');
     });
 
     test('devices', () async {
-      var result = await spotify.users.devices();
+      var result = await spotify.me.devices();
       expect(result.length, 1);
       expect(result.first.id, '5fbb3ba6aa454b5534c4ba43a8c7e8e45a63ad0e');
       expect(result.first.isActive, true);

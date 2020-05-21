@@ -29,5 +29,6 @@ part 'src/endpoints/me.dart';
 part 'src/spotify_credentials.dart';
 part 'src/spotify_base.dart';
 part 'src/spotify_exception.dart';
+part 'src/spotify_token_client.dart';
 part 'src/utils.dart';
 part 'src/spotify.dart';

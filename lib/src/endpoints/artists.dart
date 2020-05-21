@@ -16,6 +16,14 @@ class Artists extends EndpointPaging {
     return Artist.fromJson(map);
   }
 
+  Future<ArtistExtended> getArtistExtendedDetails(String id) async {
+    var jsonString = await _api._getAlien(
+        'https://spclient.wg.spotify.com/open-backend-2/v1/artists/$id');
+    var map = json.decode(jsonString);
+
+    return ArtistExtended.fromJson(map);
+  }
+
   Future<Iterable<Track>> getTopTracks(
       String artistId, String countryCode) async {
     var jsonString =

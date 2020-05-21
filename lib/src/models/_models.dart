@@ -1,11 +1,13 @@
 library spotify.models;
 
+import 'package:hive/hive.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part '_models.g.dart';
 
 part 'external_objects.dart';
 
+part 'artist_extended.dart';
 part 'album.dart';
 part 'artist.dart';
 part 'audio_feature.dart';
