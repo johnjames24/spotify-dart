@@ -7,6 +7,8 @@ class SpotifyApi extends SpotifyApiBase {
   SpotifyApi(SpotifyApiCredentials credentials)
       : super(credentials, http.Client());
 
+  SpotifyApi.fromToken() : super.fromToken();
+
   SpotifyApi.fromClient(FutureOr<oauth2.Client> client)
       : super.fromClient(client);
 

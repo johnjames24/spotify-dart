@@ -34,6 +34,13 @@ Future main() async {
       expect(artist.images.length, 3);
     });
 
+    test('artists extended', () async {
+      var artist = await spotify.artists.getArtistExtendedDetails('6qqNVTkY8uBg9cP3Jd7DAH');
+      expect(artist.artistInsights.artistGid, 'd32620ae43a04344952810abdeb337b7');
+      expect(artist.artistInsights.monthlyListeners, 44598935);
+      expect(artist.headerImages.length, 1);
+    });
+
     test('list', () async {
       var artists = await spotify.artists
           .list(['0TnOYISbd1XYRBk9myaseg', '0TnOYISbd1XYRBk9myaseg']);

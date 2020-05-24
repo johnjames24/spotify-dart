@@ -9,7 +9,7 @@ abstract class SpotifyApiBase {
   static const String _authorizationUrl =
       'https://accounts.spotify.com/authorize';
 
-  FutureOr<oauth2.Client> _client;
+  FutureOr<http.BaseClient> _client;
 
   Artists _artists;
   Artists get artists => _artists;
@@ -55,6 +55,8 @@ abstract class SpotifyApiBase {
     _audioFeatures = AudioFeatures(this);
     _categories = Categories(this);
   }
+
+  SpotifyApiBase.fromToken() : this.fromClient(TokenCredentialClient());
 
   SpotifyApiBase(SpotifyApiCredentials credentials,
       [http.BaseClient httpClient])

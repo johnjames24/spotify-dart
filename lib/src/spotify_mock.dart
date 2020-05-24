@@ -32,15 +32,22 @@ class MockClient implements oauth2.Client {
   MockHttpError _mockHttpError;
 
   String _readPath(String url) {
-    var regexString = url.contains('api.spotify.com')
-        ? r'api.spotify.com\/([A-Za-z0-9/]+)\??'
-        : r'api/([A-Za-z0-9/]+)\??';
+    if (url.contains('https://spclient.wg.spotify.com/')) {
+      var file = File('test/data/extended.json');
+      
+      return file.readAsStringSync();
+    } else {
+      var regexString = url.contains('api.spotify.com')
+          ? r'api.spotify.com\/([A-Za-z0-9/]+)\??'
+          : r'api/([A-Za-z0-9/]+)\??';
 
-    var regex = RegExp(regexString);
-    var partialPath = regex.firstMatch(url).group(1);
-    var file = File('test/data/$partialPath.json');
+      var regex = RegExp(regexString);
+      var partialPath = regex.firstMatch(url).group(1);
 
-    return file.readAsStringSync();
+      var file = File('test/data/$partialPath.json');
+
+      return file.readAsStringSync();
+    }
   }
 
   @override
@@ -120,7 +127,7 @@ class MockClient implements oauth2.Client {
     /// necessary due to using Latin-1 encoding per default.
     /// https://stackoverflow.com/questions/52990816/dart-json-encodedata-can-not-accept-other-language
     return http.Response(body, 200,
-        headers: {'Content-Type': 'application/json; charset=utf-8'});
+        headers: {HttpHeaders.contentTypeHeader : 'application/json; charset=utf-8'});
   }
 
   http.Response createErrorResponse(MockHttpError error) {
